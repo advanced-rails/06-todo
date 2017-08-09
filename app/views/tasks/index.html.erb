@@ -5,12 +5,26 @@
         <%= form.label :title %>
         <%= form.text_field :title, id: :task_title %>
     </div>
+
+    <div class="field">
+        <%= form.label :is_complete %>
+        <%= form.check_box :is_complete, id: :task_is_complete %>
+    </div>
+
+    <div class="field">
+        <%= form.label :priority %>
+        <%= form.number_field :priority, id: :task_priority %>
+    </div>
+
+    <div class="field">
+        <%= form.label :due %>
+        <%= form.date_select :due, id: :task_due %>
+    </div>
+
     <div class="field">
         <%= form.submit %>
     </div>
 <% end %>
-
-
 
 
 <table>
