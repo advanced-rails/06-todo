@@ -39,6 +39,7 @@
 <table>
     <thead>
         <tr>
+            <th></th>
             <th>complete?</th>
             <th>id</th>
             <th>title</th>
@@ -51,6 +52,11 @@
     <tbody>
         <% @tasks.each do |t| %>
             <tr>
+                <td>
+                    <%= link_to(t, method: :delete) do %>
+                        <img width="40" height="40" src="/trash.png" />
+                    <% end %>
+                </td>
                 <td><%= t.is_complete %></td>
                 <td><%= t.id %></td>
                 <td><%= t.title %></td>
