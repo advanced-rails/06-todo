@@ -10,18 +10,18 @@ class TasksController < ApplicationController
         redirect_to tasks_url
     end
 
-    def new
-    end
-    
     def edit
+        @task = Task.find(params[:id])
+        @tasks = Task.order(id: :desc)
+        render 'index'
     end
-    
-    def show
-    end
-    
+
     def update
+        task = Task.find(params[:id])
+        task.update(params[:task].permit(:title, :due, :priority, :is_complete, :category))
+        redirect_to tasks_url
     end
-    
+
     def destroy
         t = Task.find(params[:id])
         t.destroy

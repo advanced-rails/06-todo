@@ -25,7 +25,7 @@
         <%= form.label :category %>
         <%= form.select(:category, id: :task_category) do %>
             <% ['Work', 'Play', 'Home'].each do |cat| %>
-                <%= content_tag(:option, cat, value: cat) %>
+                <%= content_tag(:option, cat, value: cat, selected: @task.category == cat) %>
             <% end %>
         <% end %>
     </div>
@@ -40,6 +40,7 @@
     <thead>
         <tr>
             <th></th>
+            <th></th>
             <th>complete?</th>
             <th>id</th>
             <th>title</th>
@@ -52,6 +53,9 @@
     <tbody>
         <% @tasks.each do |t| %>
             <tr>
+                <td>
+                    <%= link_to('edit', edit_task_path(t)) %>
+                </td>
                 <td>
                     <%= link_to(t, method: :delete) do %>
                         <img width="40" height="40" src="/trash.png" />
