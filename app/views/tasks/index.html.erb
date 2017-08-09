@@ -1,0 +1,40 @@
+<h1>Task Manager</h1>
+
+<%= form_with(model: @task, local: true) do |form| %>
+    <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title, id: :task_title %>
+    </div>
+    <div class="field">
+        <%= form.submit %>
+    </div>
+<% end %>
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>complete?</th>
+            <th>id</th>
+            <th>title</th>
+            <th>priority</th>
+            <th>category</th>
+            <th>due</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @tasks.each do |t| %>
+            <tr>
+                <td><%= t.is_complete %></td>
+                <td><%= t.id %></td>
+                <td><%= t.title %></td>
+                <td><%= t.priority %></td>
+                <td><%= t.category %></td>
+                <td><%= t.due %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
