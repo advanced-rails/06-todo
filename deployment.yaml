@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: todo
-        image: chyld/todo:v1
+        image: azurechyld.azurecr.io/todo:v$BUILD_NUMBER
         env:
         - name: DATABASE_PASSWORD
           valueFrom:
