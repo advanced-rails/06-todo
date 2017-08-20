@@ -14,8 +14,12 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+
 default: &default
-  template: template0
+  host: water3.postgres.database.azure.com
+  username: chyld@water3
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  sslmode: require
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
@@ -82,5 +86,3 @@ test:
 production:
   <<: *default
   database: todo_production
-  username: todo
-  password: <%= ENV['TODO_DATABASE_PASSWORD'] %>
