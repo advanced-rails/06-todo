@@ -1,15 +1,15 @@
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   name: production
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
 
-# ---
+---
 
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: www
-  # namespace: production
+  namespace: production
 spec:
   replicas: 3
   template:
@@ -22,23 +22,26 @@ spec:
         image: chyld/todo:v1
         env:
         - name: DATABASE_PASSWORD
-          value: "Postgres12345"
+          valueFrom:
+            secretKeyRef:
+              name: db-pass
+              key: db-pass.txt
         ports:
         - containerPort: 3333
 
-#---
+---
 
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: lb
-#   # namespace: production
-#   labels:
-#     service: loadbalancer
-# spec:
-#   type: LoadBalancer
-#   ports:
-#   - port: 80
-#     targetPort: 3333
-#   selector:
-#     web: rails
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb
+  namespace: production
+  labels:
+    service: loadbalancer
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3333
+  selector:
+    web: rails
